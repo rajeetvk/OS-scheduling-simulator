@@ -14,7 +14,8 @@ app.post("/run", (req, res) => {
 
     const inputPath = path.join(CPP_ENGINE_PATH, "input.json");
     const outputPath = path.join(CPP_ENGINE_PATH, "output.json");
-    const exePath = path.join(CPP_ENGINE_PATH, "scheduler.exe");
+    const exeName = process.platform === "win32" ? "scheduler.exe" : "./scheduler.out";
+    const exePath = path.join(CPP_ENGINE_PATH, exeName);
 
     // Write request body to input.json
     fs.writeFileSync(inputPath, JSON.stringify(req.body, null, 4));
@@ -37,6 +38,7 @@ app.post("/run", (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
