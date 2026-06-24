@@ -1,5 +1,7 @@
 # OS Scheduling Simulator (OSSIM)
 
+**Live Demo:** [https://os-scheduling-simulator-client.onrender.com](https://os-scheduling-simulator-client.onrender.com)
+
 A full-stack **CPU Scheduling Simulator** that allows users to experiment with different operating system scheduling algorithms and visualize their execution using **Gantt Charts and performance metrics**.
 
 The simulator integrates **React (frontend), Node.js (backend), and C++ (algorithm engine)** to demonstrate how operating systems manage process scheduling.
@@ -163,34 +165,31 @@ http://localhost:5173
 
 Open another terminal:
 
-```
+```bash
 cd server
 npm install
-node server.js
+npm run build   # Compiles the C++ engine
+npm start
 ```
 
 Backend runs at:
 
-http://localhost:5000
+http://localhost:3000
 
 ---
 
-# Compile C++ Scheduler (if needed)
+# Compile C++ Scheduler (Manual)
 
-Navigate to the C++ engine directory:
+If you need to manually compile, navigate to the C++ engine directory:
 
-```
+```bash
 cd cpp-engine
-g++ main.cpp scheduler.cpp algorithms/*.cpp -o scheduler
+g++ main.cpp scheduler.cpp algorithms/*.cpp -o scheduler.exe  # Windows
+# OR
+g++ main.cpp scheduler.cpp algorithms/*.cpp -o scheduler.out  # Linux/Mac
 ```
 
-This creates the executable:
-
-```
-scheduler.exe
-```
-
-The Node.js backend triggers this executable to run the selected scheduling algorithm.
+The Node.js backend automatically detects your OS and triggers the correct executable to run the selected scheduling algorithm.
 
 ---
 
@@ -224,7 +223,6 @@ This project demonstrates:
 • Add Priority Scheduling
 • Add Multilevel Queue Scheduling
 • Improve UI animations
-• Deploy the simulator online
 
 ---
 
